@@ -1,0 +1,9 @@
+<div class="logo-container">
+  <img src="../../assets/logo.svg" alt="">
+</div>
+
+<div class="map-container">
+  <agm-map [latitude]="mapDetails.lat" [longitude]="mapDetails.lng" [zoom]="mapDetails.zoom" [styles]="stylesJson">
+    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  </agm-map>
+</div>
