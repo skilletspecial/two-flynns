@@ -2,8 +2,12 @@
   <img src="../../assets/logo.svg" alt="">
 </div>
 
+<!-- <div class="controls-container">
+  <mat-slider min="1" max="5" step="0.5" value="1.5"></mat-slider>
+</div> -->
+
 <div class="map-container">
-  <agm-map [latitude]="mapDetails.lat" [longitude]="mapDetails.lng" [zoom]="mapDetails.zoom" [styles]="stylesJson">
-    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  <agm-map [latitude]="mapDetails.latitude" [longitude]="mapDetails.longitude" [zoom]="mapDetails.zoom" [styles]="stylesJson">
+    <agm-marker *ngFor="let marker of markers" [latitude]="marker.latitude" [longitude]="marker.longitude"></agm-marker>
   </agm-map>
 </div>
