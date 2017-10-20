@@ -11,8 +11,7 @@ import 'hammerjs';
 })
 export class MapComponent implements OnInit {
 
-  private markers: Array<IMapMarker> = [];
-
+  public markers: Array<IMapMarker> = [];
   public mapDetails: any = {
     latitude: 39.772771,
     longitude: -97.195243,
