@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material'
 import { AngularFireDatabase } from 'angularfire2/database';
 import { MapMarkerService } from './map-marker.service';
+import { TripListComponent } from '../trip-list/trip-list.component';
 import { IMapMarker } from './map-marker';
 import 'hammerjs';
 
@@ -17,6 +19,8 @@ export class MapComponent implements OnInit {
     longitude: -97.195243,
     zoom: 5
   }
+  public minYear: number = 2015;
+  public maxYear: number = 2017;
 
   stylesJson: any =
   [
@@ -261,12 +265,31 @@ export class MapComponent implements OnInit {
     }
   ]
 
-  constructor(private database: AngularFireDatabase,
-    private markerService: MapMarkerService) { }
+  constructor(public dialog: MatDialog,
+    private database: AngularFireDatabase,
+    private markerService: MapMarkerService) {
+    }
 
   ngOnInit() {
     this.markerService.getMapMarkers().subscribe((dbMarkers: Array<IMapMarker>) => {
       this.markers = dbMarkers;
+    });
+
+    this.markerService.queryTest().subscribe((x: any) => {
+      console.log(x);
+    });
+  }
+
+  public changeMarkers() {
+    this.markers = [];
+    this.mapDetails.zoom = 3;
+  }
+
+  public openTripList() {
+    this.dialog.open(TripListComponent, {
+      data: {
+        trips: this.markers
+      }
     });
   }
 }

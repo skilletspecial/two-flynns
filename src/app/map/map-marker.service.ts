@@ -9,7 +9,7 @@ export class MapMarkerService {
   constructor(private database: AngularFireDatabase) {}
 
   public getMapMarkers(): Observable<Array<IMapMarker>> {
-    return this.database.list('markers').valueChanges().map((result: any) => {
+    return this.database.list('markers', ref => ref.orderByChild('year')).valueChanges().map((result: any) => {
       return result.map((marker) => {
         return {
           displayTitle: marker.displayTitle,
@@ -25,5 +25,9 @@ export class MapMarkerService {
         }
       });
     });
+  }
+
+  public queryTest(): any {
+    return this.database.list('markers', ref => ref.orderByChild('year')).valueChanges();
   }
 }
