@@ -2,4 +2,4 @@
 
 Angular application to display the trips my wife and I have taken together.
 
-## See here: http://www.twoflynns.com/
+## See here: https://twoflynns.com/

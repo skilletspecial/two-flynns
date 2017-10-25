@@ -9,63 +9,87 @@ import { MAT_DIALOG_DATA } from '@angular/material';
 export class TripChartComponent implements OnInit {
 
   private chartData: any;
-  private labels: Array<string> = [];
+  public barChartLabels: Array<number> = [];
+  public barChartType: string = 'bar';
+  public barChartLegend: boolean = true;
+  public barChartOptions: any = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
+  public barChartData: Array<IChartDatum> = [];
+  public barChartColors:Array<any> = [
+    { // grey
+      backgroundColor: 'rgba(46,204,113,1)',
+      borderColor: 'rgba(146,204,113,1)'
+    },
+    { // dark grey
+      backgroundColor: 'rgba(41,128,185,1)',
+      borderColor: 'rgba(41,128,185,1)'
+    },
+  ];
 
   constructor( @Inject(MAT_DIALOG_DATA) public data: any) {
-    console.log(data);
     this.chartData = data;
-    console.log(this.getLabels());
   }
 
   ngOnInit() {
+    this.populateChartLabels();
+    this.populateChartData();
   }
 
-  private getLabels() {
-    this.chartData.trips.forEach(element => {
-      if (!this.labels.includes(element.year)) {
-        this.labels.push(element.year);
+  private populateChartLabels() {
+    this.chartData.trips.forEach(trip => {
+      if (!this.barChartLabels.includes(trip.year)) {
+        this.barChartLabels.push(trip.year);
       }
     });
   }
 
-  public barChartOptions:any = {
-    scaleShowVerticalLines: false,
-    responsive: true
-  };
-  public barChartLabels:string[] = ['2015', '2016', '2017'];
-  public barChartType:string = 'bar';
-  public barChartLegend:boolean = true;
- 
-  public barChartData:any[] = [
-    {data: [65, 59, 80], label: 'Miles Driven'},
-    {data: [28, 48, 40], label: 'Miles Flown'}
-  ];
- 
+  private populateChartData() {
+    this.barChartData = [
+      { data: [], label: 'Miles Driven' },
+      { data: [], label: 'Miles Flown' }
+    ];
+
+    let travelTotals: Array<IYearMilesTotals> = [];
+
+    this.barChartLabels.forEach(label => {
+      travelTotals.push({ year: label, milesDriven: 0, milesFlown: 0 });
+    });
+
+    this.chartData.trips.forEach(trip => {
+      travelTotals.forEach(total => {
+        if (trip.year === total.year) {
+          total.milesDriven += trip.milesDriven;
+          total.milesFlown += trip.milesFlown;
+        }
+      });
+    });
+
+    travelTotals.forEach(total => {
+      this.barChartData[0].data.push(total.milesDriven);
+      this.barChartData[1].data.push(total.milesFlown);
+    });
+  }
+
   // events
-  public chartClicked(e:any):void {
+  public chartClicked(e: any): void {
     console.log(e);
   }
- 
-  public chartHovered(e:any):void {
+
+  public chartHovered(e: any): void {
     console.log(e);
   }
- 
-  public randomize():void {
-    // Only Change 3 values
-    let data = [
-      Math.round(Math.random() * 100),
-      (Math.random() * 100),
-      (Math.random() * 100)];
-    let clone = JSON.parse(JSON.stringify(this.barChartData));
-    clone[0].data = data;
-    this.barChartData = clone;
-    /**
-     * (My guess), for Angular to recognize the change in the dataset
-     * it has to change the dataset variable directly,
-     * so one way around it, is to clone the data, change it and then
-     * assign it;
-     */
-  }
+}
 
+interface IChartDatum {
+  data: Array<number>;
+  label: string;
+  backgroundColor?: string;
+}
 
+interface IYearMilesTotals {
+  year: number;
+  milesDriven: number;
+  milesFlown: number;
 }

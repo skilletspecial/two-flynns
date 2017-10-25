@@ -18,7 +18,7 @@ export class MapComponent implements OnInit {
   public mapDetails: any = {
     latitude: 39.772771,
     longitude: -97.195243,
-    zoom: 5
+    zoom: 4
   }
   public minYear: number = 2015;
   public maxYear: number = 2017;
