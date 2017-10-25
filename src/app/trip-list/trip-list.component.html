@@ -3,12 +3,12 @@
   <div class="trip-list-container">
       <mat-table #table [dataSource]="dataSource">
         <ng-container matColumnDef="place">
-          <mat-header-cell *matHeaderCellDef> Place </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef [ngClass]="place"> Place </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.displayTitle}} </mat-cell>
         </ng-container>
     
         <ng-container matColumnDef="date">
-          <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef [ngClass]="date"> Date </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.year}} </mat-cell>
         </ng-container>
     

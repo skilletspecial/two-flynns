@@ -2,10 +2,24 @@
     display: flex;
     flex-direction: column;
     max-height: 500px;
-    min-width: 550px;
+    min-width: 450px;
 }
-  
+
 .mat-table {
-    overflow: auto;
-    max-height: 500px;
+    display: table;
+    width: 100%;
+
+    > .mat-header-row, > .mat-row {
+        display: table-row;
+        padding: 0;
+        border: none;
+
+        > .mat-header-cell, > .mat-cell {
+            display: table-cell;
+            height: 48px;
+            vertical-align: middle;
+
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        }
+    }
 }
