@@ -1,5 +1,18 @@
 <div class="logo-container">
   <img src="../../assets/logo.svg" alt="">
+
+  <div class="style-toggle-container">
+    <div class="icon">
+      <i-sun></i-sun>
+    </div>
+    <div>
+      <mat-slide-toggle (click)="toggleTheme()">
+      </mat-slide-toggle>
+    </div>
+    <div class="icon">
+      <i-moon></i-moon>
+    </div>
+  </div>
 </div>
 
 <div class="controls-container">
@@ -8,6 +21,9 @@
   </button>
   <button type="button" (click)="openTripChart()">
     <i-bar-chart-2 class="icon"></i-bar-chart-2>
+  </button>
+  <button type="button" (click)="openAbout()">
+    <i-users class="icon"></i-users>
   </button>
 </div>
 

@@ -4,6 +4,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { MapMarkerService } from './map-marker.service';
 import { TripListComponent } from '../trip-list/trip-list.component';
 import { TripChartComponent } from '../trip-chart/trip-chart.component';
+import { AboutComponent } from '../about/about.component';
 import { IMapMarker } from './map-marker';
 import 'hammerjs';
 
@@ -20,10 +21,9 @@ export class MapComponent implements OnInit {
     longitude: -97.195243,
     zoom: 4
   }
-  public minYear: number = 2015;
-  public maxYear: number = 2017;
 
-  public stylesJson: any = this.darkTheme();
+  public stylesJson: any = this.lightTheme();
+  public lightEnabled: boolean = false;
 
   constructor(public dialog: MatDialog,
     private database: AngularFireDatabase,
@@ -34,6 +34,8 @@ export class MapComponent implements OnInit {
     this.markerService.getMapMarkers().subscribe((dbMarkers: Array<IMapMarker>) => {
       this.markers = dbMarkers;
     });
+
+    this.lightEnabled = true;
   }
 
   public openTripList() {
@@ -52,242 +54,33 @@ export class MapComponent implements OnInit {
     });
   }
 
+  public openAbout() {
+    this.dialog.open(AboutComponent, {
+      data: {
+        trips: this.markers
+      }
+    });
+  }
+
+  public toggleTheme(): void {
+    this.lightEnabled = !this.lightEnabled;
+    if (this.lightEnabled) {
+      this.stylesJson = this.lightTheme();
+    } else {
+      this.stylesJson = this.darkTheme();
+    }
+  }
+
   private lightTheme(): Array<any> {
     return [
       {
-        "elementType": "geometry",
+        "featureType": "water",
         "stylers": [
           {
-            "color": "#efe4c3"
-          }
-        ]
-      },
-      {
-        "elementType": "labels.text.fill",
-        "stylers": [
-          {
-            "color": "#523735"
-          }
-        ]
-      },
-      {
-        "elementType": "labels.text.stroke",
-        "stylers": [
-          {
-            "color": "#f5f1e6"
-          }
-        ]
-      },
-      {
-        "featureType": "administrative",
-        "elementType": "geometry.stroke",
-        "stylers": [
-          {
-            "color": "#c9b2a6"
-          }
-        ]
-      },
-      {
-        "featureType": "administrative.land_parcel",
-        "elementType": "geometry.stroke",
-        "stylers": [
-          {
-            "color": "#dcd2be"
-          }
-        ]
-      },
-      {
-        "featureType": "administrative.land_parcel",
-        "elementType": "labels.text.fill",
-        "stylers": [
-          {
-            "color": "#ae9e90"
-          }
-        ]
-      },
-      {
-        "featureType": "landscape.natural",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#e4dbb8"
-          }
-        ]
-      },
-      {
-        "featureType": "landscape.natural.landcover",
-        "elementType": "geometry.fill",
-        "stylers": [
-          {
-            "visibility": "off"
-          }
-        ]
-      },
-      {
-        "featureType": "landscape.natural.terrain",
-        "elementType": "geometry.fill",
-        "stylers": [
-          {
-            "color": "#a1c35c"
+            "color": "#aadff1"
           },
           {
             "visibility": "on"
-          },
-          {
-            "weight": 8
-          }
-        ]
-      },
-      {
-        "featureType": "poi",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#dfd2ae"
-          }
-        ]
-      },
-      {
-        "featureType": "poi",
-        "elementType": "labels.text.fill",
-        "stylers": [
-          {
-            "color": "#93817c"
-          }
-        ]
-      },
-      {
-        "featureType": "poi.park",
-        "elementType": "geometry.fill",
-        "stylers": [
-          {
-            "color": "#a5b076"
-          }
-        ]
-      },
-      {
-        "featureType": "poi.park",
-        "elementType": "labels.text.fill",
-        "stylers": [
-          {
-            "color": "#447530"
-          }
-        ]
-      },
-      {
-        "featureType": "road",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#f5f1e6"
-          }
-        ]
-      },
-      {
-        "featureType": "road.arterial",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#fdfcf8"
-          }
-        ]
-      },
-      {
-        "featureType": "road.highway",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#f8c967"
-          }
-        ]
-      },
-      {
-        "featureType": "road.highway",
-        "elementType": "geometry.stroke",
-        "stylers": [
-          {
-            "color": "#e9bc62"
-          }
-        ]
-      },
-      {
-        "featureType": "road.highway.controlled_access",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#e98d58"
-          }
-        ]
-      },
-      {
-        "featureType": "road.highway.controlled_access",
-        "elementType": "geometry.stroke",
-        "stylers": [
-          {
-            "color": "#db8555"
-          }
-        ]
-      },
-      {
-        "featureType": "road.local",
-        "elementType": "labels.text.fill",
-        "stylers": [
-          {
-            "color": "#806b63"
-          }
-        ]
-      },
-      {
-        "featureType": "transit.line",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#dfd2ae"
-          }
-        ]
-      },
-      {
-        "featureType": "transit.line",
-        "elementType": "labels.text.fill",
-        "stylers": [
-          {
-            "color": "#8f7d77"
-          }
-        ]
-      },
-      {
-        "featureType": "transit.line",
-        "elementType": "labels.text.stroke",
-        "stylers": [
-          {
-            "color": "#ebe3cd"
-          }
-        ]
-      },
-      {
-        "featureType": "transit.station",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#dfd2ae"
-          }
-        ]
-      },
-      {
-        "featureType": "water",
-        "elementType": "geometry.fill",
-        "stylers": [
-          {
-            "color": "#bae1d3"
-          }
-        ]
-      },
-      {
-        "featureType": "water",
-        "elementType": "labels.text.fill",
-        "stylers": [
-          {
-            "color": "#92998d"
           }
         ]
       }

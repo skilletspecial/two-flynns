@@ -6,7 +6,7 @@ import { AgmCoreModule } from '@agm/core';
 import { MatSliderModule, MatSidenavModule, MatButtonModule, MatSlideToggleModule, MatExpansionModule, MatDialogModule, MatTableModule } from '@angular/material';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database'
-import { IconList, IconBarChart2 } from 'angular-feather'
+import { IconList, IconBarChart2, IconSun, IconMoon, IconUsers } from 'angular-feather'
 import { ChartsModule } from 'ng2-charts'
 
 import { environment } from '../environments/environment';
@@ -17,13 +17,15 @@ import { TripListComponent } from './trip-list/trip-list.component';
 
 import { MapMarkerService } from './map/map-marker.service';
 import { TripChartComponent } from './trip-chart/trip-chart.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
     TripListComponent,
-    TripChartComponent
+    TripChartComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +44,9 @@ import { TripChartComponent } from './trip-chart/trip-chart.component';
     MatTableModule,
     IconList,
     IconBarChart2,
+    IconSun,
+    IconMoon,
+    IconUsers,
     ChartsModule
   ],
   providers: [
@@ -50,7 +55,8 @@ import { TripChartComponent } from './trip-chart/trip-chart.component';
   bootstrap: [AppComponent],
   entryComponents: [
     TripListComponent,
-    TripChartComponent
+    TripChartComponent,
+    AboutComponent
   ]
 })
 export class AppModule { }
