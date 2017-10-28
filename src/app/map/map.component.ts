@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material'
 import { AngularFireDatabase } from 'angularfire2/database';
 import { MapMarkerService } from './map-marker.service';
-import { TripListDialogComponent } from '../trip-list-dialog/trip-list-dialog.component';
-import { TripChartsDialogComponent } from '../trip-charts-dialog/trip-charts-dialog.component';
-import { AboutDialogComponent } from '../about-dialog/about-dialog.component';
-import { IMapMarker } from './map-marker';
+import { TripListDialogComponent } from '../dialog/trip-list-dialog/trip-list-dialog.component';
+import { TripChartsDialogComponent } from '../dialog/trip-charts-dialog/trip-charts-dialog.component';
+import { AboutDialogComponent } from '../dialog/about-dialog/about-dialog.component';
+import { IDestination } from '../app.interfaces';
 import 'hammerjs';
 
 @Component({
@@ -15,7 +15,7 @@ import 'hammerjs';
 })
 export class MapComponent implements OnInit {
 
-  public markers: Array<IMapMarker> = [];
+  public markers: Array<IDestination> = [];
   public mapDetails: any = {
     latitude: 39.772771,
     longitude: -97.195243,
@@ -31,7 +31,7 @@ export class MapComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.markerService.getMapMarkers().subscribe((dbMarkers: Array<IMapMarker>) => {
+    this.markerService.getMapMarkers().subscribe((dbMarkers: Array<IDestination>) => {
       this.markers = dbMarkers;
     });
 

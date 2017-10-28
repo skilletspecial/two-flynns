@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
-import { IMapMarker } from './map-marker';
+import { IDestination } from '../app.interfaces';
 
 @Injectable()
 export class MapMarkerService {
 
   constructor(private database: AngularFireDatabase) {}
 
-  public getMapMarkers(): Observable<Array<IMapMarker>> {
+  public getMapMarkers(): Observable<Array<IDestination>> {
     return this.database.list('markers', ref => ref.orderByChild('year')).valueChanges().map((result: any) => {
       return result.map((marker) => {
         return {

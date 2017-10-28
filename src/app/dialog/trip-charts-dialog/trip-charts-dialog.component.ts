@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
+import { IChartData, IYearMilesCount } from '../../app.interfaces';
 
 @Component({
   selector: 'app-trip-charts-dialog',
@@ -16,7 +17,7 @@ export class TripChartsDialogComponent implements OnInit {
     scaleShowVerticalLines: false,
     responsive: true
   };
-  public barChartData: Array<IChartDatum> = [];
+  public barChartData: Array<IChartData> = [];
   public barChartColors:Array<any> = [
     {
       backgroundColor: 'rgba(46,204,113,1)',
@@ -51,7 +52,7 @@ export class TripChartsDialogComponent implements OnInit {
       { data: [], label: 'Miles Flown' }
     ];
 
-    let travelTotals: Array<IYearMilesTotals> = [];
+    let travelTotals: Array<IYearMilesCount> = [];
 
     this.barChartLabels.forEach(label => {
       travelTotals.push({ year: label, milesDriven: 0, milesFlown: 0 });
@@ -80,16 +81,4 @@ export class TripChartsDialogComponent implements OnInit {
   public chartHovered(e: any): void {
     console.log(e);
   }
-}
-
-interface IChartDatum {
-  data: Array<number>;
-  label: string;
-  backgroundColor?: string;
-}
-
-interface IYearMilesTotals {
-  year: number;
-  milesDriven: number;
-  milesFlown: number;
 }
