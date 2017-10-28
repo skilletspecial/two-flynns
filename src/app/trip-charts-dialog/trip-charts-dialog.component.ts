@@ -2,11 +2,11 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
-  selector: 'app-trip-chart',
-  templateUrl: './trip-chart.component.html',
-  styleUrls: ['./trip-chart.component.scss']
+  selector: 'app-trip-charts-dialog',
+  templateUrl: './trip-charts-dialog.component.html',
+  styleUrls: ['./trip-charts-dialog.component.scss']
 })
-export class TripChartComponent implements OnInit {
+export class TripChartsDialogComponent implements OnInit {
 
   private chartData: any;
   public barChartLabels: Array<number> = [];
@@ -18,11 +18,11 @@ export class TripChartComponent implements OnInit {
   };
   public barChartData: Array<IChartDatum> = [];
   public barChartColors:Array<any> = [
-    { // grey
+    {
       backgroundColor: 'rgba(46,204,113,1)',
       borderColor: 'rgba(146,204,113,1)'
     },
-    { // dark grey
+    {
       backgroundColor: 'rgba(41,128,185,1)',
       borderColor: 'rgba(41,128,185,1)'
     },

@@ -1,0 +1,19 @@
+<div class="about-container">
+  <img src="../../assets/nick-and-katie.jpg" alt="">
+  <div>
+    <h1 mat-dialog-title>Meet the Flynns</h1>
+    <div mat-dialog-content>
+      <p>We're the Flynns and we love to travel -- just like every other person. But we have a big map to show where we've been!</p>
+      <p>
+        <strong>Total Destinations: </strong>{{destinations.length}}</p>
+      <p>
+        <strong>Favorite Trip: </strong>Oregon Coast (2016)</p>
+      <p>
+        <strong>Years Adventuring: </strong>{{destinations[destinations.length-1].year - destinations[0].year + 1}}</p>
+      <p>
+        <strong>Miles Traveled: </strong>{{milesTraveled.toLocaleString()}}</p>
+      <p>
+        <strong>Bathroom Breaks: </strong>{{bathroomBreaks}}</p>
+    </div>
+  </div>
+</div>

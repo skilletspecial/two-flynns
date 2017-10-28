@@ -13,19 +13,19 @@ import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
-import { TripListComponent } from './trip-list/trip-list.component';
+import { TripListDialogComponent } from './trip-list-dialog/trip-list-dialog.component';
 
 import { MapMarkerService } from './map/map-marker.service';
-import { TripChartComponent } from './trip-chart/trip-chart.component';
-import { AboutComponent } from './about/about.component';
+import { TripChartsDialogComponent } from './trip-charts-dialog/trip-charts-dialog.component';
+import { AboutDialogComponent } from './about-dialog/about-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
-    TripListComponent,
-    TripChartComponent,
-    AboutComponent
+    TripListDialogComponent,
+    TripChartsDialogComponent,
+    AboutDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -54,9 +54,9 @@ import { AboutComponent } from './about/about.component';
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    TripListComponent,
-    TripChartComponent,
-    AboutComponent
+    TripListDialogComponent,
+    TripChartsDialogComponent,
+    AboutDialogComponent
   ]
 })
 export class AppModule { }

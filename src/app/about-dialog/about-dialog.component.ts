@@ -2,11 +2,11 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
-  selector: 'app-about',
-  templateUrl: './about.component.html',
-  styleUrls: ['./about.component.scss']
+  selector: 'app-about-dialog',
+  templateUrl: './about-dialog.component.html',
+  styleUrls: ['./about-dialog.component.scss']
 })
-export class AboutComponent implements OnInit {
+export class AboutDialogComponent implements OnInit {
 
   public destinations: Array<any>;
   public milesTraveled: number;

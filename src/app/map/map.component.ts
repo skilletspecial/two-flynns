@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material'
 import { AngularFireDatabase } from 'angularfire2/database';
 import { MapMarkerService } from './map-marker.service';
-import { TripListComponent } from '../trip-list/trip-list.component';
-import { TripChartComponent } from '../trip-chart/trip-chart.component';
-import { AboutComponent } from '../about/about.component';
+import { TripListDialogComponent } from '../trip-list-dialog/trip-list-dialog.component';
+import { TripChartsDialogComponent } from '../trip-charts-dialog/trip-charts-dialog.component';
+import { AboutDialogComponent } from '../about-dialog/about-dialog.component';
 import { IMapMarker } from './map-marker';
 import 'hammerjs';
 
@@ -39,7 +39,7 @@ export class MapComponent implements OnInit {
   }
 
   public openTripList() {
-    this.dialog.open(TripListComponent, {
+    this.dialog.open(TripListDialogComponent, {
       data: {
         trips: this.markers
       }
@@ -47,7 +47,7 @@ export class MapComponent implements OnInit {
   }
 
   public openTripChart() {
-    this.dialog.open(TripChartComponent, {
+    this.dialog.open(TripChartsDialogComponent, {
       data: {
         trips: this.markers
       }
@@ -55,7 +55,7 @@ export class MapComponent implements OnInit {
   }
 
   public openAbout() {
-    this.dialog.open(AboutComponent, {
+    this.dialog.open(AboutDialogComponent, {
       data: {
         trips: this.markers
       }
