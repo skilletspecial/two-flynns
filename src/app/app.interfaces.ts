@@ -12,6 +12,12 @@ export interface IDestination {
     notes: string;
 }
 
+export interface IMapDetails {
+    latitude: number;
+    longitude:  number;
+    zoom: number;
+}
+
 export interface IChartData {
     data: Array<number>;
     label: string;

@@ -5,7 +5,7 @@ import { MapMarkerService } from './map-marker.service';
 import { TripListDialogComponent } from '../dialog/trip-list-dialog/trip-list-dialog.component';
 import { TripChartsDialogComponent } from '../dialog/trip-charts-dialog/trip-charts-dialog.component';
 import { AboutDialogComponent } from '../dialog/about-dialog/about-dialog.component';
-import { IDestination } from '../app.interfaces';
+import { IDestination, IMapDetails } from '../app.interfaces';
 import 'hammerjs';
 
 @Component({
@@ -16,7 +16,7 @@ import 'hammerjs';
 export class MapComponent implements OnInit {
 
   public markers: Array<IDestination> = [];
-  public mapDetails: any = {
+  public mapDetails: IMapDetails = {
     latitude: 39.772771,
     longitude: -97.195243,
     zoom: 4
@@ -36,6 +36,10 @@ export class MapComponent implements OnInit {
     });
 
     this.lightEnabled = true;
+    
+    if (window.innerWidth < 500) {
+      this.mapDetails.zoom = 3;
+    }
   }
 
   public openTripList() {
@@ -75,12 +79,10 @@ export class MapComponent implements OnInit {
     return [
       {
         "featureType": "water",
+        "elementType": "geometry.fill",
         "stylers": [
           {
-            "color": "#aadff1"
-          },
-          {
-            "visibility": "on"
+            "color": "#77CAE6"
           }
         ]
       }
