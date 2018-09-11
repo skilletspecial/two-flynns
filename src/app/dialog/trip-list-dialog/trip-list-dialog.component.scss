@@ -8,21 +8,24 @@ $phone-sm-width: 200px;
         max-height: 500px;
         min-width: 450px;
     }
-    
+
     .mat-table {
         display: table;
         width: 100%;
-    
-        > .mat-header-row, > .mat-row {
+        background: transparent;
+
+        > .mat-header-row,
+        > .mat-row {
             display: table-row;
             padding: 0;
             border: none;
-    
-            > .mat-header-cell, > .mat-cell {
+
+            > .mat-header-cell,
+            > .mat-cell {
                 display: table-cell;
                 height: 48px;
                 vertical-align: middle;
-    
+
                 border-bottom: 1px solid rgba(0, 0, 0, 0.12);
             }
         }
@@ -37,10 +40,12 @@ $phone-sm-width: 200px;
             min-width: $phone-lg-width;
             width: $phone-lg-width;
         }
-        
+
         .mat-table {
-            > .mat-header-row, > .mat-row {
-                > .mat-header-cell, > .mat-cell {
+            > .mat-header-row,
+            > .mat-row {
+                > .mat-header-cell,
+                > .mat-cell {
                     height: 40px;
                     font-size: 0.85rem;
                 }
@@ -55,10 +60,12 @@ $phone-sm-width: 200px;
             min-width: $phone-sm-width;
             width: $phone-sm-width;
         }
-        
+
         .mat-table {
-            > .mat-header-row, > .mat-row {
-                > .mat-header-cell, > .mat-cell {
+            > .mat-header-row,
+            > .mat-row {
+                > .mat-header-cell,
+                > .mat-cell {
                     height: 36px;
                     font-size: 0.75rem;
                 }

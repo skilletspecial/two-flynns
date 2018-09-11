@@ -1,19 +1,19 @@
 <div class="list-container">
-  <h2 mat-dialog-title>Trip List</h2>
-  <div class="trip-list-container">
-    <mat-table #table [dataSource]="dataSource">
-      <ng-container matColumnDef="place">
-        <mat-header-cell *matHeaderCellDef [ngClass]="place"> Place </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.displayTitle}} </mat-cell>
-      </ng-container>
+    <h2 mat-dialog-title>Trip List</h2>
+    <div class="trip-list-container">
+        <table mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="place">
+                <th mat-header-cell *matHeaderCellDef [ngClass]="place"> Place </th>
+                <td mat-cell *matCellDef="let element"> {{element.displayTitle}} </td>
+            </ng-container>
 
-      <ng-container matColumnDef="date">
-        <mat-header-cell *matHeaderCellDef [ngClass]="date"> Date </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.year}} </mat-cell>
-      </ng-container>
+            <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef [ngClass]="date"> Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.year}} </td>
+            </ng-container>
 
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-  </div>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
 </div>
