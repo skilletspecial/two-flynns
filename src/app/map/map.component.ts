@@ -15,6 +15,7 @@ import 'hammerjs';
 })
 export class MapComponent implements OnInit {
     public markers: Array<IDestination> = [];
+    public orderedMarkers: Array<IDestination> = [];
     public mapDetails: IMapDetails = {
         latitude: 39.772771,
         longitude: -97.195243,
@@ -29,6 +30,9 @@ export class MapComponent implements OnInit {
     ngOnInit() {
         this.markerService.getMapMarkers().subscribe((dbMarkers: Array<IDestination>) => {
             this.markers = dbMarkers;
+            const markersCopyString = JSON.stringify(dbMarkers);
+            const markersCopyArray = JSON.parse(markersCopyString);
+            this.orderedMarkers = markersCopyArray.sort((a, b) => (a.latitude < b.latitude ? 1 : b.latitude < a.latitude ? -1 : 0));
         });
 
         this.lightEnabled = true;
