@@ -6,27 +6,26 @@ jobs:
             - image: circleci/node:8-browsers
         steps:
             - checkout
+            # - run:
+            #       name: Add Firebase config
+            #       command: echo $FIREBASE_CONFIG >> ~/two-flynns/src/firebase.ts
 
-            - run:
-                  name: Add Firebase config
-                  command: echo $FIREBASE_CONFIG >> ~/two-flynns/src/firebase.ts
+            # - restore_cache:
+            #       key: two-flynns-{{ .Branch }}-{{ checksum "package.json" }}
 
-            - restore_cache:
-                  key: two-flynns-{{ .Branch }}-{{ checksum "package.json" }}
+            # - run:
+            #       name: Install packages
+            #       command: npm install
 
-            - run:
-                  name: Install packages
-                  command: npm install
+            # - save_cache:
+            #       key: two-flynns-{{ .Branch }}-{{ checksum "package.json" }}
+            #       paths:
+            #           - './node_modules'
 
-            - save_cache:
-                  key: two-flynns-{{ .Branch }}-{{ checksum "package.json" }}
-                  paths:
-                      - './node_modules'
+            # - run:
+            #       name: Build
+            #       command: npm run build-ci
 
-            - run:
-                  name: Build
-                  command: npm run build-ci
-
-            - run:
-                  name: Deploy to Firebase
-                  command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
+            # - run:
+            #       name: Deploy to Firebase
+            #       command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
